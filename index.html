@@ -1,7 +1,52 @@
-<html>
-  <tital>
-    matta 
-  </tital>
-  <body> 
-  <h1> Isuru Umanga</h1></body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Slideshow</title>
+</head>
+<body>
+    <video id="videoPlayer" width="640" height="360" controls>
+        <!-- Initial video source -->
+        <source src="path/to/your/first/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        // Array of video sources
+        const videoSources = [
+            "path/to/your/first/video.mp4",
+            "path/to/your/second/video.mp4",
+            // Add more video sources as needed
+        ];
+
+        // Get the video player element
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        // Index to keep track of the current video
+        let currentVideoIndex = 0;
+
+        // Function to change the video source
+        function changeVideo() {
+            videoPlayer.src = videoSources[currentVideoIndex];
+            videoPlayer.load(); // Load the new video
+            videoPlayer.play(); // Play the new video
+        }
+
+        // Event listener to detect when the current video ends
+        videoPlayer.addEventListener('ended', function() {
+            // Increment the current video index
+            currentVideoIndex++;
+
+            // If the index exceeds the array length, reset to the first video
+            if (currentVideoIndex >= videoSources.length) {
+                currentVideoIndex = 0;
+            }
+
+            // Change to the next video
+            changeVideo();
+        });
+    </script>
+</body>
 </html>
+
